@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* DCC Brand: Deep Navy + Vibrant Orange */
+    --background: 0 0% 100%;
+    --foreground: 220 30% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 30% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 30% 10%;
+    /* Primary: Deep Navy Blue */
+    --primary: 220 55% 18%;
+    --primary-foreground: 0 0% 100%;
+    /* Secondary: Light Gray-Blue */
+    --secondary: 215 25% 94%;
+    --secondary-foreground: 220 55% 18%;
+    --muted: 215 20% 96%;
+    --muted-foreground: 215 15% 50%;
+    /* Accent: Vibrant Orange */
+    --accent: 25 95% 53%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 215 20% 88%;
+    --input: 215 20% 88%;
+    --ring: 220 55% 18%;
+    --chart-1: 25 95% 53%;
+    --chart-2: 220 55% 35%;
+    --chart-3: 197 37% 40%;
+    --chart-4: 43 74% 60%;
+    --chart-5: 12 76% 61%;
+    --radius: 0.5rem;
+    --sidebar-background: 220 55% 18%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 25 95% 53%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 40% 25%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 220 40% 25%;
+    --sidebar-ring: 25 95% 53%;
+  }
+
+  .dark {
+    --background: 220 55% 8%;
+    --foreground: 0 0% 96%;
+    --card: 220 50% 12%;
+    --card-foreground: 0 0% 96%;
+    --popover: 220 50% 12%;
+    --popover-foreground: 0 0% 96%;
+    --primary: 25 95% 53%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 40% 20%;
+    --secondary-foreground: 0 0% 96%;
+    --muted: 220 40% 18%;
+    --muted-foreground: 215 15% 65%;
+    --accent: 25 95% 53%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 96%;
+    --border: 220 40% 22%;
+    --input: 220 40% 22%;
+    --ring: 25 95% 53%;
+    --chart-1: 25 95% 53%;
+    --chart-2: 220 55% 55%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+    --sidebar-background: 220 55% 8%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 25 95% 53%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 40% 18%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 220 40% 18%;
+    --sidebar-ring: 25 95% 53%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+  }
+}
+
+@layer utilities {
+  .text-accent {
+    color: hsl(var(--accent));
+  }
+  .bg-accent {
+    background-color: hsl(var(--accent));
+  }
+  .bg-primary-dark {
+    background-color: hsl(220, 55%, 14%);
+  }
+  .gradient-hero {
+    background: linear-gradient(135deg, hsl(220, 55%, 12%) 0%, hsl(220, 55%, 22%) 60%, hsl(220, 45%, 28%) 100%);
+  }
+  .gradient-accent {
+    background: linear-gradient(135deg, hsl(25, 95%, 48%) 0%, hsl(35, 95%, 55%) 100%);
+  }
+  .section-padding {
+    @apply py-16 md:py-20 lg:py-24;
+  }
+}
