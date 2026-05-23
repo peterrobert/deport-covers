@@ -1,8 +1,8 @@
 export default function StatsBar() {
   const stats = [
-    { value: "500+", label: "Projects Completed" },
-    { value: "200+", label: "Happy Clients" },
-    { value: "10+", label: "Years Experience" },
+    { value: "50+", label: "Projects Completed" },
+    { value: "50+", label: "Happy Clients" },
+    { value: "5+", label: "Years Experience" },
     { value: "8", label: "Services Offered" },
   ];
 
