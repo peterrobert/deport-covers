@@ -1,72 +1,130 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Search } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const projects = [
   {
-    title: "Corporate Fleet Branding",
+    title: "Supa Flame Gas Solutions Rebranding",
     category: "Branding",
-    img: "https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_9d2f1139a1_ba8d55f2bafd58c1.png",
+    img: "/project/portfolio-preview/photo1.jpeg",
   },
   {
-    title: "Event Signage Kit",
-    category: "Signages",
-    img: "https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_8e1031693e_7db855d98276e1e5.png",
+    title: "Regent Auto Valuers",
+    category: "Branding",
+    img: "/project/portfolio-preview/photo2.jpeg",
   },
   {
-    title: "Premium Product Packaging",
-    category: "Printing",
-    img: "https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_6b3fbac979_d893184971a11e3e.png",
+    title: "Olyx Gas Rebranding",
+    category: "Branding",
+    img: "/project/portfolio-preview/photo3.jpeg",
   },
   {
-    title: "Uniform Embroidery",
-    category: "Embroidery",
-    img: "https://storage.googleapis.com/uxpilot-auth.appspot.com/gen_a518e32689_a5566f0e314c50c8.png",
+    title: "Otrovato Rebranding",
+    category: "Branding",
+    img: "/project/portfolio-preview/photo4.jpeg",
   },
 ];
 
 export default function PortfolioPreview() {
+  const [index, setIndex] = useState(0);
+
+  const next = () => setIndex((prev) => (prev + 1) % projects.length);
+  const prev = () =>
+    setIndex((prev) => (prev - 1 + projects.length) % projects.length);
+
   return (
     <section className="section-padding bg-muted/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 mb-4">
               <div className="h-0.5 w-8 bg-accent"></div>
-              <span className="text-accent font-bold uppercase tracking-[0.2em] text-xs">Our Work</span>
+              <span className="text-accent font-bold uppercase tracking-[0.2em] text-xs">
+                Our Work
+              </span>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-primary leading-tight">
               Recent Projects That Speak for Themselves
             </h2>
           </div>
-          <Button asChild className="bg-primary hover:bg-primary/90 text-white font-bold rounded-xl hidden md:flex">
+
+          <Button
+            asChild
+            className="hidden md:flex bg-primary text-white rounded-xl"
+          >
             <Link to="/portfolio" className="flex items-center gap-2">
               View Full Portfolio <ArrowRight className="w-4 h-4" />
             </Link>
           </Button>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {projects.map((project, i) => (
-            <div key={i} className="group relative overflow-hidden rounded-2xl bg-white shadow-md aspect-[4/5]">
-              <img src={project.img} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                <span className="inline-block self-start px-3 py-1 rounded-full bg-accent text-white text-[10px] font-bold uppercase tracking-wider mb-2">
-                  {project.category}
-                </span>
-                <h3 className="text-white font-bold text-lg leading-tight mb-4">
-                  {project.title}
-                </h3>
-                <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center self-end border border-white/30">
-                  <Search className="w-5 h-5 text-white" />
-                </div>
-              </div>
+        {/* Carousel */}
+        <div className="relative w-full max-w-5xl mx-auto">
+          {/* Image */}
+          <div className="overflow-hidden rounded-3xl shadow-xl relative aspect-[16/10] bg-black">
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={projects[index].img}
+                src={projects[index].img}
+                initial={{ opacity: 0, scale: 1.05 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 1.02 }}
+                transition={{ duration: 0.5 }}
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+            </AnimatePresence>
+
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent flex flex-col justify-end p-6 md:p-10">
+              <span className="inline-block px-3 py-1 rounded-full bg-accent text-white text-xs font-semibold uppercase tracking-wider mb-3 w-fit">
+                {projects[index].category}
+              </span>
+
+              <h3 className="text-white text-2xl md:text-3xl font-bold max-w-lg">
+                {projects[index].title}
+              </h3>
             </div>
-          ))}
+          </div>
+
+          {/* Controls */}
+          <div className="absolute inset-0 flex items-center justify-between px-4">
+            <button
+              onClick={prev}
+              className="w-10 h-10 rounded-full bg-white/80 backdrop-blur hover:bg-white flex items-center justify-center shadow"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+
+            <button
+              onClick={next}
+              className="w-10 h-10 rounded-full bg-white/80 backdrop-blur hover:bg-white flex items-center justify-center shadow"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
+
+          {/* Dots */}
+          <div className="flex justify-center gap-2 mt-6">
+            {projects.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setIndex(i)}
+                className={`h-2 rounded-full transition-all ${
+                  i === index
+                    ? "w-6 bg-primary"
+                    : "w-2 bg-gray-300 hover:bg-gray-400"
+                }`}
+              />
+            ))}
+          </div>
         </div>
 
+        {/* Mobile CTA */}
         <div className="mt-10 text-center md:hidden">
-          <Button asChild className="bg-primary hover:bg-primary/90 text-white font-bold rounded-xl w-full">
+          <Button asChild className="w-full bg-primary text-white rounded-xl">
             <Link to="/portfolio">View Full Portfolio</Link>
           </Button>
         </div>
