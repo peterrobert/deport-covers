@@ -150,9 +150,9 @@ This project is licensed under the MIT License.
 
 **Peter Robert**
 
-- GitHub: https://github.com/yourusername
+- GitHub: https://github.com/peterrobert
 - Portfolio: https://deport-covers.vercel.app/
 
 ---
 
-Made with ❤️ using Next.js and React.
+Made with ❤️ using React Javascript and Typescript.
